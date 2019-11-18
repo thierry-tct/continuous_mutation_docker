@@ -18,7 +18,7 @@ topdir=$(dirname $(readlink -f $0))
 [ $# -eq 2 -o $# -eq 3 ] || error_exit "invalid number of arguments (expected 3, got $#)."
 config_file=$1
 muteria_output_dir=$2
-collected_res=$topdir/collected_results
+collected_res=$muteria_output/collected_results
 [ $# -eq 3 ] && collected_dir=$3
 
 collected_pre=collected_dir/pre
@@ -38,16 +38,23 @@ gather_data()
     m_dir=$1
     o_dir=$2
     # TODO: implement
+    test -d m_dir || error_exit "m_dir missing ($m_dir)"
+    test -d o_dir || error_exit "o_dir missing ($o_dir)"
+    rm -rf $o_dir/*
+    cp -rf $m_dir/latest/RESULTS_DATA $o_dir || error_exit "Failed to copy RESULTS_DIR"
+    cp $m_dir/latest/testscases_workdir/shadow_se/klee_change_locs.json $o_dir || error_exit "Failed to copy klee_change_locs"
 }
 
-post_conf=$topdir/ctrl/conf.py
+pre_conf=$config_file
+post_conf=$config_file
+tmp_post_conf=$collected_post/tmp_post_conf.py
 if [ $run_only_post -eq 0 ]; then
     test -d $collected_pre || mkdir $collected_pre || error_exit "Failed to create collected_pre $collected_pre"
-    KLEE_CHANGE_RUNTIME_SET_OLD_VERSION=on $muteria_runner --config $topdir/ctrl/conf.py --lang=c run || error_exit "pre failed!"
+    KLEE_CHANGE_RUNTIME_SET_OLD_VERSION=on $muteria_runner --config $pre_conf --lang=c run || error_exit "pre failed!"
     gather_data $muteria_output_dir $collected_pre
     
     # update post_conf 
-    post_conf=$collected_post/tmp_post_conf.py
+    post_conf=$tmp_post_conf
     # TODO: populate tmp_post_conf.py
     # TODO: Use a combination of TEST_TOOL_TYPES_SCHEDULING and RE_EXECUTE_FROM_CHECKPOINT_META_TASKS to re-execute for new
 fi
@@ -55,6 +62,8 @@ fi
 test -d $collected_post || mkdir $collected_post || error_exit "Failed to create collected_post $collected_post"
 $muteria_runner --config $post_conf --lang=c run || error_exit "post failed!"
 gather_data $muteria_output_dir $collected_post
+
+test -f $tmp_post_conf && rm -f $tmp_post_conf
 
 echo "# ($0) DONE!"
 
