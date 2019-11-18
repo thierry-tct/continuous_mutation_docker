@@ -1,7 +1,14 @@
 #! /bin/bash
 
-# TODO: make is overriding wrapper when collecting env vars to bypass make in dev test.
-# SOLUTION: let wrapper copying keep the same time stats as the previous built to avoid that. Or, separately run that when the custom test thing is cre
+# This scripts run the experiment for a particular commit and 
+# save the outputs of original and mutants on the pre and post commit versions
+# 
+# The arguments of the script are:
+# - muteria config file for the project
+# - path to the folder specified as output in the muteria config file
+# - path to the (non existing) directory where the experiment output data is to be stored.
+# e.g.: run.sh ctrl/conf.py output collected
+#########
 
 set -u
 
@@ -39,12 +46,15 @@ gather_data()
 {
     m_dir=$1
     o_dir=$2
-    # TODO: implement
+    pre_post=$3
     test -d m_dir || error_exit "m_dir missing ($m_dir)"
     test -d o_dir || error_exit "o_dir missing ($o_dir)"
     rm -rf $o_dir/*
     cp -rf $m_dir/latest/RESULTS_DATA $o_dir || error_exit "Failed to copy RESULTS_DIR"
     cp $m_dir/latest/testscases_workdir/shadow_se/klee_change_locs.json $o_dir || error_exit "Failed to copy klee_change_locs"
+    
+    test -d $m_dir/latest/RESULTS_DATA.$pre_post && rm -rf $m_dir/latest/RESULTS_DATA.$pre_post
+    cp -rf $m_dir/latest/RESULTS_DATA $m_dir/latest/RESULTS_DATA.$pre_post
 }
 
 pre_conf=$config_file
@@ -53,7 +63,7 @@ tmp_post_conf=$collected_post/tmp_post_conf.py
 if [ $run_only_post -eq 0 ]; then
     test -d $collected_pre || mkdir $collected_pre || error_exit "Failed to create collected_pre $collected_pre"
     KLEE_CHANGE_RUNTIME_SET_OLD_VERSION=on $muteria_runner --config $pre_conf --lang=c run || error_exit "pre failed!"
-    gather_data $muteria_output_dir $collected_pre
+    gather_data $muteria_output_dir $collected_pre 'pre'
     
     # update post_conf 
     post_conf=$tmp_post_conf
@@ -63,7 +73,7 @@ fi
 
 test -d $collected_post || mkdir $collected_post || error_exit "Failed to create collected_post $collected_post"
 $muteria_runner --config $post_conf --lang=c run || error_exit "post failed!"
-gather_data $muteria_output_dir $collected_post
+gather_data $muteria_output_dir $collected_post 'post'
 
 test -f $tmp_post_conf && rm -f $tmp_post_conf
 
