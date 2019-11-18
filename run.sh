@@ -67,8 +67,21 @@ if [ $run_only_post -eq 0 ]; then
     
     # update post_conf 
     post_conf=$tmp_post_conf
-    # TODO: populate tmp_post_conf.py
-    # TODO: Use a combination of TEST_TOOL_TYPES_SCHEDULING and RE_EXECUTE_FROM_CHECKPOINT_META_TASKS to re-execute for new
+    # Use a combination of TEST_TOOL_TYPES_SCHEDULING and RE_EXECUTE_FROM_CHECKPOINT_META_TASKS to re-execute for new        
+    echo "import os, sys" > $tmp_post_conf
+    echo "sys.path.insert(0, '$(dirname $config_file)')" >> $tmp_post_conf
+    echo "from $(basename $config_file) import *" >> $tmp_post_conf
+    echo "sys.path.pop(0)" >> $tmp_post_conf
+    echo "import muteria.drivers.testgeneration as tc_driver" >> $tmp_post_conf
+    echo "RE_EXECUTE_FROM_CHECKPOINT_META_TASKS = ['TESTS_EXECUTION_SELECTION_PRIORITIZATION']" >> $tmp_post_conf
+    echo "try:" >> $tmp_post_conf
+    echo "    tts = TEST_TOOL_TYPES_SCHEDULING" >> $tmp_post_conf
+    echo "except NameError:" >> $tmp_post_conf
+    echo "    tts = tc_driver.TEST_TOOL_TYPES_SCHEDULING" >> $tmp_post_conf
+    echo "TEST_TOOL_TYPES_SCHEDULING = []" >> $tmp_post_conf
+    echo "for tt in tts:" >> $tmp_post_conf
+    echo "    TEST_TOOL_TYPES_SCHEDULING += list(tt)" >> $tmp_post_conf
+    echo "TEST_TOOL_TYPES_SCHEDULING = [tuple(TEST_TOOL_TYPES_SCHEDULING)]" >> $tmp_post_conf
 fi
 
 test -d $collected_post || mkdir $collected_post || error_exit "Failed to create collected_post $collected_post"
