@@ -30,8 +30,8 @@ muteria_output_dir=$2
 collected_res=$muteria_output/collected_results
 [ $# -eq 3 ] && collected_dir=$3
 
-collected_pre=collected_dir/pre
-collected_post=collected_dir/post
+collected_pre=$collected_dir/pre
+collected_post=$collected_dir/post
 
 # After mart executes, this will collect the RESULTS folder
 ## Create the collected results dir
