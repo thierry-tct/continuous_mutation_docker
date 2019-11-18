@@ -33,13 +33,30 @@ if test -d $collected_post; then
     run_only_post=1
 fi
 
+gather_data()
+{
+    m_dir=$1
+    o_dir=$2
+    # TODO: implement
+}
+
+post_conf=$topdir/ctrl/conf.py
 if [ $run_only_post -eq 0 ]; then
+    test -d $collected_pre || mkdir $collected_pre || error_exit "Failed to create collected_pre $collected_pre"
     KLEE_CHANGE_RUNTIME_SET_OLD_VERSION=on $muteria_runner --config $topdir/ctrl/conf.py --lang=c run || error_exit "pre failed!"
+    gather_data $muteria_output_dir $collected_pre
     
+    # update post_conf 
+    post_conf=$collected_post/tmp_post_conf.py
+    # TODO: populate tmp_post_conf.py
+    # TODO: Use a combination of TEST_TOOL_TYPES_SCHEDULING and RE_EXECUTE_FROM_CHECKPOINT_META_TASKS to re-execute for new
 fi
 
-# TDOD: Use a combination of TEST_TOOL_TYPES_SCHEDULING and RE_EXECUTE_FROM_CHECKPOINT_META_TASKS to re-execute for new
-#$muteria_runner --config $topdir/ctrl/conf.py --lang=c run 
+test -d $collected_post || mkdir $collected_post || error_exit "Failed to create collected_post $collected_post"
+$muteria_runner --config $post_conf --lang=c run || error_exit "post failed!"
+gather_data $muteria_output_dir $collected_post
+
+echo "# ($0) DONE!"
 
 
 
