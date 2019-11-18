@@ -19,8 +19,9 @@ ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu:/usr/lib64
 ENV LLVM_LIB_SEARCH_PATH $LLVM_LIB_SEARCH_PATH:/usr/lib/x86_64-linux-gnu:/usr/lib64
 
 # create a non root user
-RUN adduser --uid 8877 --disabled-login --disabled-password myuser && adduser myuser sudo
-USER myuser
+RUN adduser -m --uid 8878 --disabled-login --disabled-password myuser && adduser cmtools sudo
+COPY run.sh /home/cmtools
+USER cmtools
 
 # upgrade muteria if new version and ulimit for shadow
 #ENTRYPOINT ulimit -s unlimited && sudo pip install muteria -U
