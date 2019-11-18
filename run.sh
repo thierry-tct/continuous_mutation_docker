@@ -11,6 +11,8 @@ error_exit()
     exit 1
 }
 
+sudo pip install -U muteria
+
 muteria_runner=muteria
 topdir=$(dirname $(readlink -f $0))
 
