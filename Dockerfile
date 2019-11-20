@@ -7,7 +7,12 @@ RUN apt-get update && apt-get -y install sudo && echo '%sudo ALL=(ALL) NOPASSWD:
 ARG shadow_location=/home/shadowvm/shadow
 
 # Install Muteria and Copy Shadow
-RUN pip install muteria && mkdir -p $shadow_location
+RUN apt-get install -y python3-pip python3-dev \
+  && cd /usr/local/bin \
+  && ln -s /usr/bin/python3 python \
+  && cd - \
+  && pip3 install --upgrade pip \
+  && pip install muteria && mkdir -p $shadow_location
 
 COPY shadow $shadow_location/
 
