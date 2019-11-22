@@ -2,16 +2,12 @@ ARG mart_llvm_version=3.4.2
 
 FROM thierrytct/mart:llvm-$mart_llvm_version
 
-RUN apt-get update && apt-get -y install sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN apt-get update && apt-get -y install git sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 ARG shadow_location=/home/shadowvm/shadow
 
 # Install Muteria and Copy Shadow
-RUN apt-get install -y python3-pip python3-dev \
-  && cd /usr/local/bin \
-  && ln -s /usr/bin/python3 python \
-  && cd - \
-  && pip3 install --upgrade pip \
+RUN pip3 install --upgrade pip \
   && pip install muteria && mkdir -p $shadow_location
 
 COPY shadow $shadow_location/
