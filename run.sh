@@ -27,7 +27,7 @@ topdir=$(dirname $(readlink -f $0))
 [ $# -eq 2 -o $# -eq 3 ] || error_exit "invalid number of arguments (expected 3, got $#)."
 config_file=$1
 muteria_output_dir=$2
-collected_res=$muteria_output/collected_results
+collected_res=$muteria_output_dir/collected_results
 [ $# -eq 3 ] && collected_dir=$3
 
 collected_pre=$collected_dir/pre
@@ -47,8 +47,8 @@ gather_data()
     m_dir=$1
     o_dir=$2
     pre_post=$3
-    test -d m_dir || error_exit "m_dir missing ($m_dir)"
-    test -d o_dir || error_exit "o_dir missing ($o_dir)"
+    test -d $m_dir || error_exit "m_dir missing ($m_dir)"
+    test -d $o_dir || error_exit "o_dir missing ($o_dir)"
     rm -rf $o_dir/*
     cp -rf $m_dir/latest/RESULTS_DATA $o_dir || error_exit "Failed to copy RESULTS_DIR"
     cp $m_dir/latest/testscases_workdir/shadow_se/klee_change_locs.json $o_dir || error_exit "Failed to copy klee_change_locs"
