@@ -60,29 +60,35 @@ gather_data()
 pre_conf=$config_file
 post_conf=$config_file
 tmp_post_conf=$collected_dir/tmp_post_conf.py
+jump=''
+
 if [ $run_only_post -eq 0 ]; then
     test -d $collected_pre || mkdir $collected_pre || error_exit "Failed to create collected_pre $collected_pre"
     KLEE_CHANGE_RUNTIME_SET_OLD_VERSION=on $muteria_runner --config $pre_conf --lang=c run || error_exit "pre failed!"
     gather_data $muteria_output_dir $collected_pre 'pre'
-    
-    # update post_conf 
-    post_conf=$tmp_post_conf
-    # Use a combination of TEST_TOOL_TYPES_SCHEDULING and RE_EXECUTE_FROM_CHECKPOINT_META_TASKS to re-execute for new        
-    echo "import os, sys" > $tmp_post_conf
-    echo "sys.path.insert(0, '$(dirname $config_file)')" >> $tmp_post_conf
-    echo "from $(basename ${config_file%.py}) import *" >> $tmp_post_conf
-    echo "sys.path.pop(0)" >> $tmp_post_conf
-    echo "import muteria.drivers.testgeneration as tc_driver" >> $tmp_post_conf
-    echo "RE_EXECUTE_FROM_CHECKPOINT_META_TASKS = ['TESTS_EXECUTION_SELECTION_PRIORITIZATION']" >> $tmp_post_conf
-    echo "try:" >> $tmp_post_conf
-    echo "    tts = TEST_TOOL_TYPES_SCHEDULING" >> $tmp_post_conf
-    echo "except NameError:" >> $tmp_post_conf
-    echo "    tts = tc_driver.TEST_TOOL_TYPES_SCHEDULING" >> $tmp_post_conf
-    echo "TEST_TOOL_TYPES_SCHEDULING = []" >> $tmp_post_conf
-    echo "for tt in tts:" >> $tmp_post_conf
-    echo "    TEST_TOOL_TYPES_SCHEDULING += list(tt)" >> $tmp_post_conf
-    echo "TEST_TOOL_TYPES_SCHEDULING = [tuple(TEST_TOOL_TYPES_SCHEDULING)]" >> $tmp_post_conf
+
+    jump="RE_EXECUTE_FROM_CHECKPOINT_META_TASKS = ['TESTS_EXECUTION_SELECTION_PRIORITIZATION']" 
 fi
+
+
+# update post_conf 
+post_conf=$tmp_post_conf
+# Use a combination of TEST_TOOL_TYPES_SCHEDULING and RE_EXECUTE_FROM_CHECKPOINT_META_TASKS to re-execute for new        
+echo "import os, sys" > $tmp_post_conf
+echo "sys.path.insert(0, '$(dirname $config_file)')" >> $tmp_post_conf
+echo "from $(basename ${config_file%.py}) import *" >> $tmp_post_conf
+echo "sys.path.pop(0)" >> $tmp_post_conf
+echo "import muteria.drivers.testgeneration as tc_driver" >> $tmp_post_conf
+echo "$jump" >> $tmp_post_conf
+echo "try:" >> $tmp_post_conf
+echo "    tts = TEST_TOOL_TYPES_SCHEDULING" >> $tmp_post_conf
+echo "except NameError:" >> $tmp_post_conf
+echo "    tts = tc_driver.TEST_TOOL_TYPES_SCHEDULING" >> $tmp_post_conf
+echo "TEST_TOOL_TYPES_SCHEDULING = []" >> $tmp_post_conf
+echo "for tt in tts:" >> $tmp_post_conf
+echo "    TEST_TOOL_TYPES_SCHEDULING += list(tt)" >> $tmp_post_conf
+echo "TEST_TOOL_TYPES_SCHEDULING = [tuple(TEST_TOOL_TYPES_SCHEDULING)]" >> $tmp_post_conf
+
 
 test -d $collected_post || mkdir $collected_post || error_exit "Failed to create collected_post $collected_post"
 $muteria_runner --config $post_conf --lang=c run || error_exit "post failed!"
