@@ -70,7 +70,7 @@ if [ $run_only_post -eq 0 ]; then
     # Use a combination of TEST_TOOL_TYPES_SCHEDULING and RE_EXECUTE_FROM_CHECKPOINT_META_TASKS to re-execute for new        
     echo "import os, sys" > $tmp_post_conf
     echo "sys.path.insert(0, '$(dirname $config_file)')" >> $tmp_post_conf
-    echo "from $(basename $config_file) import *" >> $tmp_post_conf
+    echo "from $(basename ${config_file%.py}) import *" >> $tmp_post_conf
     echo "sys.path.pop(0)" >> $tmp_post_conf
     echo "import muteria.drivers.testgeneration as tc_driver" >> $tmp_post_conf
     echo "RE_EXECUTE_FROM_CHECKPOINT_META_TASKS = ['TESTS_EXECUTION_SELECTION_PRIORITIZATION']" >> $tmp_post_conf
