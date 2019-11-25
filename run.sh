@@ -63,6 +63,9 @@ tmp_post_conf=$collected_dir/tmp_post_conf.py
 jump=''
 
 if [ $run_only_post -eq 0 ]; then
+    echo ">>>>>"
+    echo "RUNNING PRE"
+    echo "<<<<<"
     test -d $collected_pre || mkdir $collected_pre || error_exit "Failed to create collected_pre $collected_pre"
     KLEE_CHANGE_RUNTIME_SET_OLD_VERSION=on $muteria_runner --config $pre_conf --lang=c run || error_exit "pre failed!"
     gather_data $muteria_output_dir $collected_pre 'pre'
@@ -90,6 +93,9 @@ echo "    TEST_TOOL_TYPES_SCHEDULING += list(tt)" >> $tmp_post_conf
 echo "TEST_TOOL_TYPES_SCHEDULING = [tuple(TEST_TOOL_TYPES_SCHEDULING)]" >> $tmp_post_conf
 
 
+echo ">>>>>"
+echo "RUNNING POST"
+echo "<<<<<"
 test -d $collected_post || mkdir $collected_post || error_exit "Failed to create collected_post $collected_post"
 $muteria_runner --config $post_conf --lang=c run || error_exit "post failed!"
 gather_data $muteria_output_dir $collected_post 'post'
