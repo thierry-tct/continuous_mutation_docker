@@ -59,7 +59,7 @@ gather_data()
 
 pre_conf=$config_file
 post_conf=$config_file
-tmp_post_conf=$collected_post/tmp_post_conf.py
+tmp_post_conf=$collected_dir/tmp_post_conf.py
 if [ $run_only_post -eq 0 ]; then
     test -d $collected_pre || mkdir $collected_pre || error_exit "Failed to create collected_pre $collected_pre"
     KLEE_CHANGE_RUNTIME_SET_OLD_VERSION=on $muteria_runner --config $pre_conf --lang=c run || error_exit "pre failed!"
