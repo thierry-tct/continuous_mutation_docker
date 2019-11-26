@@ -54,7 +54,9 @@ gather_data()
     cp $m_dir/latest/testscases_workdir/shadow_se/klee_change_locs.json $o_dir || error_exit "Failed to copy klee_change_locs"
     
     test -d $m_dir/latest/RESULTS_DATA.$pre_post && rm -rf $m_dir/latest/RESULTS_DATA.$pre_post
-    cp -rf $m_dir/latest/RESULTS_DATA $m_dir/latest/RESULTS_DATA.$pre_post
+    cp -rf $m_dir/latest/RESULTS_DATA $m_dir/latest/RESULTS_DATA.$pre_post || error_exit "backing result_data failed"
+
+    [ "$pre_post" = 'pre' ] && rm -rf $m_dir/latest/RESULTS_DATA || error_exit "rm result data failed (pre)"
 }
 
 pre_conf=$config_file
