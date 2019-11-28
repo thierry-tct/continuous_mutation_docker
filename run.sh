@@ -56,7 +56,9 @@ gather_data()
     test -d $m_dir/latest/RESULTS_DATA.$pre_post && rm -rf $m_dir/latest/RESULTS_DATA.$pre_post
     cp -rf $m_dir/latest/RESULTS_DATA $m_dir/latest/RESULTS_DATA.$pre_post || error_exit "backing result_data failed"
 
-    [ "$pre_post" = 'pre' ] && rm -rf $m_dir/latest/RESULTS_DATA || error_exit "rm result data failed (pre)"
+    if [ "$pre_post" = 'pre' ]; then
+	rm -rf $m_dir/latest/RESULTS_DATA || error_exit "rm result data failed (pre)"
+    fi
 }
 
 pre_conf=$config_file
