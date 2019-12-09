@@ -52,6 +52,7 @@ gather_data()
     rm -rf $o_dir/*
     cp -rf $m_dir/latest/RESULTS_DATA $o_dir || error_exit "Failed to copy RESULTS_DIR"
     cp $m_dir/latest/testscases_workdir/shadow_se/klee_change_locs.json $o_dir || error_exit "Failed to copy klee_change_locs"
+    cp $m_dir/latest/criteria_workdir/mart_0/instrumented_code/mutant_data/mart-out-0/mutantsInfos.json $o_dir || error_exit "Failed to copy mutantsInfos.jsom"
     
     test -d $m_dir/latest/RESULTS_DATA.$pre_post && rm -rf $m_dir/latest/RESULTS_DATA.$pre_post
     cp -rf $m_dir/latest/RESULTS_DATA $m_dir/latest/RESULTS_DATA.$pre_post || error_exit "backing result_data failed"
