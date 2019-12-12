@@ -51,7 +51,10 @@ gather_data()
     test -d $o_dir || error_exit "o_dir missing ($o_dir)"
     rm -rf $o_dir/*
     cp -rf $m_dir/latest/RESULTS_DATA $o_dir || error_exit "Failed to copy RESULTS_DIR"
-    cp $m_dir/latest/testscases_workdir/shadow_se/klee_change_locs.json $o_dir || error_exit "Failed to copy klee_change_locs"
+    if [ "$pre_post" = 'pre' ]; then
+        cp $m_dir/latest/testscases_workdir/shadow_se/klee_change_locs.json $o_dir || error_exit "Failed to copy klee_change_locs"
+        cp -rf $m_dir/latest/criteria_workdir/mart_0/instrumented_code/mutant_data/mart-out-0/ $o_dir || error_exit "Failed to copy mutantsInfos.jsom"
+    fi
     
     test -d $m_dir/latest/RESULTS_DATA.$pre_post && rm -rf $m_dir/latest/RESULTS_DATA.$pre_post
     cp -rf $m_dir/latest/RESULTS_DATA $m_dir/latest/RESULTS_DATA.$pre_post || error_exit "backing result_data failed"
