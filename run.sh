@@ -30,16 +30,19 @@ muteria_output_dir=$2
 collected_res=$muteria_output_dir/collected_results
 [ $# -eq 3 ] && collected_dir=$3
 
-collected_pre=$collected_dir/pre
-collected_post=$collected_dir/post
-
 # After mart executes, this will collect the RESULTS folder
 ## Create the collected results dir
 test -d $collected_dir || mkdir $collected_dir || error_exit "Failed to create collected_dir $collected_dir"
 
-run_only_post=0
-if test -d $collected_post; then
-    run_only_post=1
+first='post'
+second='pre'
+
+collected_first=$collected_dir/$first
+collected_second=$collected_dir/$second
+
+run_only_second=0
+if test -d $collected_second; then
+    run_only_second=1
 fi
 
 gather_data()
@@ -51,7 +54,7 @@ gather_data()
     test -d $o_dir || error_exit "o_dir missing ($o_dir)"
     rm -rf $o_dir/*
     cp -rf $m_dir/latest/RESULTS_DATA $o_dir || error_exit "Failed to copy RESULTS_DIR"
-    if [ "$pre_post" = 'pre' ]; then
+    if [ "$pre_post" = "$first" ]; then
         cp $m_dir/latest/testscases_workdir/shadow_se/klee_change_locs.json $o_dir || error_exit "Failed to copy klee_change_locs"
         cp -rf $m_dir/latest/criteria_workdir/mart_0/instrumented_code/mutant_data/mart-out-0/ $o_dir || error_exit "Failed to copy mutantsInfos.jsom"
     fi
@@ -59,30 +62,36 @@ gather_data()
     test -d $m_dir/latest/RESULTS_DATA.$pre_post && rm -rf $m_dir/latest/RESULTS_DATA.$pre_post
     cp -rf $m_dir/latest/RESULTS_DATA $m_dir/latest/RESULTS_DATA.$pre_post || error_exit "backing result_data failed"
 
-    if [ "$pre_post" = 'pre' ]; then
+    if [ "$pre_post" = "$first" ]; then
 	rm -rf $m_dir/latest/RESULTS_DATA || error_exit "rm result data failed (pre)"
     fi
 }
 
-pre_conf=$config_file
-post_conf=$config_file
+first_conf=$config_file
+second_conf=$config_file
 tmp_post_conf=$collected_dir/tmp_post_conf.py
 jump=''
 
-if [ $run_only_post -eq 0 ]; then
+if [ $run_only_second -eq 0 ]; then
     echo ">>>>>"
-    echo "RUNNING PRE"
+    echo "RUNNING $first"
     echo "<<<<<"
-    test -d $collected_pre || mkdir $collected_pre || error_exit "Failed to create collected_pre $collected_pre"
-    KLEE_CHANGE_RUNTIME_SET_OLD_VERSION=on $muteria_runner --config $pre_conf --lang=c run || error_exit "pre failed!"
-    gather_data $muteria_output_dir $collected_pre 'pre'
+    test -d $collected_first || mkdir $collected_first || error_exit "Failed to create collected_$first $collected_first"
+
+    if [ "$second" = 'pre' ]; then
+        KLEE_CHANGE_RUNTIME_SET_OLD_VERSION=on $muteria_runner --config $first_conf --lang=c run || error_exit "$first failed!"
+    else
+        $muteria_runner --config $first_conf --lang=c run || error_exit "$first failed!"
+    fi
+
+    gather_data $muteria_output_dir $collected_first $first
 
     jump="RE_EXECUTE_FROM_CHECKPOINT_META_TASKS = ['TESTS_EXECUTION_SELECTION_PRIORITIZATION']" 
 fi
 
 
-# update post_conf 
-post_conf=$tmp_post_conf
+# update second_conf 
+second_conf=$tmp_post_conf
 # Use a combination of TEST_TOOL_TYPES_SCHEDULING and RE_EXECUTE_FROM_CHECKPOINT_META_TASKS to re-execute for new        
 echo "import os, sys" > $tmp_post_conf
 echo "sys.path.insert(0, '$(dirname $config_file)')" >> $tmp_post_conf
@@ -101,11 +110,17 @@ echo "TEST_TOOL_TYPES_SCHEDULING = [tuple(TEST_TOOL_TYPES_SCHEDULING)]" >> $tmp_
 
 
 echo ">>>>>"
-echo "RUNNING POST"
+echo "RUNNING $second"
 echo "<<<<<"
-test -d $collected_post || mkdir $collected_post || error_exit "Failed to create collected_post $collected_post"
-$muteria_runner --config $post_conf --lang=c run || error_exit "post failed!"
-gather_data $muteria_output_dir $collected_post 'post'
+test -d $collected_second || mkdir $collected_second || error_exit "Failed to create collected_second $collected_second"
+
+if [ "$second" = 'pre' ]; then
+    KLEE_CHANGE_RUNTIME_SET_OLD_VERSION=on $muteria_runner --config $second_conf --lang=c run || error_exit "$second failed!"
+else
+    $muteria_runner --config $second_conf --lang=c run || error_exit "$second failed!"
+fi
+
+gather_data $muteria_output_dir $collected_second $second
 
 test -f $tmp_post_conf && rm -f $tmp_post_conf
 
