@@ -106,8 +106,8 @@ uintptr_t klee_change(uintptr_t x, uintptr_t y) {
     static int __attribute__ ((noinline)) __attribute__(( unused )) klee_get_false(void);
     int __attribute__ ((noinline)) __attribute__(( unused )) klee_get_true(void) { return 1; }
     int __attribute__ ((noinline)) __attribute__(( unused )) klee_get_false(void) { return 0; } 
-    #define klee_change(x,y)    (y) 
-    
+    #define klee_change(x,y)    (y)
+
 #elif RESOLVE_KLEE_CHANGE == 11
     // Here we use macro for klee_get_<true, false> because the code will be mutated later on. better have nothing related to klee
     #define klee_get_true() (1)

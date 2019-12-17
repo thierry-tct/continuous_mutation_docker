@@ -1,3 +1,5 @@
+# docker build -t thierrytct/cm . && sudo docker push thierrytct/cm
+
 ARG semu_llvm_version=3.4.2
 
 FROM thierrytct/klee-semu:llvm-$semu_llvm_version
