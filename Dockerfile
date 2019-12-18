@@ -4,7 +4,7 @@ ARG semu_llvm_version=3.4.2
 
 FROM thierrytct/klee-semu:llvm-$semu_llvm_version
 
-RUN apt-get update && apt-get -y install git vim sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN apt-get update && apt-get -y install git gdb vim sudo && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 ARG shadow_location=/home/shadowvm/shadow
 
