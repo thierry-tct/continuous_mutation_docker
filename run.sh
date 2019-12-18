@@ -24,10 +24,10 @@ muteria_runner=muteria
 topdir=$(dirname $(readlink -f $0))
 
 
-[ $# -eq 2 -o $# -eq 3 ] || error_exit "invalid number of arguments (expected 3, got $#)."
+[ $# -eq 2 -o $# -eq 3 ] || error_exit "invalid number of arguments (expected 2 or 3, got $#)."
 config_file=$1
 muteria_output_dir=$2
-collected_res=$muteria_output_dir/collected_results
+collected_dir=$(dirname $(readlink -f muteria_output_dir))/collected_results
 [ $# -eq 3 ] && collected_dir=$3
 
 # After mart executes, this will collect the RESULTS folder
