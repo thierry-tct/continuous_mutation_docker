@@ -55,8 +55,12 @@ gather_data()
     rm -rf $o_dir/*
     cp -rf $m_dir/latest/RESULTS_DATA $o_dir || error_exit "Failed to copy RESULTS_DIR"
     if [ "$pre_post" = "$first" ]; then
-        cp $m_dir/latest/testscases_workdir/shadow_se/klee_change_locs.json $o_dir || error_exit "Failed to copy klee_change_locs"
-        cp -rf $m_dir/latest/criteria_workdir/mart_0/instrumented_code/mutant_data/mart-out-0/ $o_dir || error_exit "Failed to copy mutantsInfos.jsom"
+	if test -f $m_dir/latest/testscases_workdir/shadow_se/klee_change_locs.json ; then
+            cp $m_dir/latest/testscases_workdir/shadow_se/klee_change_locs.json $o_dir || error_exit "Failed to copy klee_change_locs"
+        fi
+        if test -d $m_dir/latest/criteria_workdir/mart_0/instrumented_code/mutant_data/mart-out-0/ ; then
+            cp -rf $m_dir/latest/criteria_workdir/mart_0/instrumented_code/mutant_data/mart-out-0/ $o_dir || error_exit "Failed to copy mutantsInfos.jsom"
+	fi
     fi
     
     test -d $m_dir/latest/RESULTS_DATA.$pre_post && rm -rf $m_dir/latest/RESULTS_DATA.$pre_post
