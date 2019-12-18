@@ -1,4 +1,4 @@
-# docker build -t thierrytct/cm . && sudo docker push thierrytct/cm
+# sudo docker build --no-cache -t thierrytct/cm . && sudo docker push thierrytct/cm
 
 ARG semu_llvm_version=3.4.2
 
