@@ -83,9 +83,9 @@ if [ $run_only_second -eq 0 ]; then
     test -d $collected_first || mkdir $collected_first || error_exit "Failed to create collected_$first $collected_first"
 
     if [ "$second" = 'pre' ]; then
-        KLEE_CHANGE_RUNTIME_SET_OLD_VERSION=on $muteria_runner --config $first_conf --lang=c run || error_exit "$first failed!"
+        yes | KLEE_CHANGE_RUNTIME_SET_OLD_VERSION=on $muteria_runner --config $first_conf --lang=c run || error_exit "$first failed!"
     else
-        $muteria_runner --config $first_conf --lang=c run || error_exit "$first failed!"
+        yes | $muteria_runner --config $first_conf --lang=c run || error_exit "$first failed!"
     fi
 
     gather_data $muteria_output_dir $collected_first $first
@@ -119,9 +119,9 @@ echo "<<<<<"
 test -d $collected_second || mkdir $collected_second || error_exit "Failed to create collected_second $collected_second"
 
 if [ "$second" = 'pre' ]; then
-    KLEE_CHANGE_RUNTIME_SET_OLD_VERSION=on $muteria_runner --config $second_conf --lang=c run || error_exit "$second failed!"
+    yes | KLEE_CHANGE_RUNTIME_SET_OLD_VERSION=on $muteria_runner --config $second_conf --lang=c run || error_exit "$second failed!"
 else
-    $muteria_runner --config $second_conf --lang=c run || error_exit "$second failed!"
+    yes | $muteria_runner --config $second_conf --lang=c run || error_exit "$second failed!"
 fi
 
 gather_data $muteria_output_dir $collected_second $second
