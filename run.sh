@@ -82,7 +82,7 @@ if [ $run_only_second -eq 0 ]; then
     echo "<<<<<"
     test -d $collected_first || mkdir $collected_first || error_exit "Failed to create collected_$first $collected_first"
 
-    if [ "$second" = 'pre' ]; then
+    if [ "$first" = 'pre' ]; then
         yes | KLEE_CHANGE_RUNTIME_SET_OLD_VERSION=on $muteria_runner --config $first_conf --lang=c run || error_exit "$first failed!"
     else
         yes | $muteria_runner --config $first_conf --lang=c run || error_exit "$first failed!"
