@@ -22,7 +22,9 @@ ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu:/usr/lib64
 ENV LLVM_LIB_SEARCH_PATH $LLVM_LIB_SEARCH_PATH:/usr/lib/x86_64-linux-gnu:/usr/lib64
 
 # create a non root user
-RUN adduser --home /home/cmtools --uid 8878 --disabled-login --disabled-password cmtools && adduser cmtools sudo
+RUN adduser --home /home/cmtools --uid 8878 --disabled-login --disabled-password cmtools && adduser cmtools sudo \
+  && git clone https://github.com/muteria/example_c.git /home/cmtools/example_c
+
 COPY run.sh /home/cmtools
 USER cmtools
 
@@ -32,3 +34,7 @@ USER cmtools
 
 
 CMD echo "HELLO CM"
+
+
+# Run Docker as following:
+#> sudo docker run -it --rm --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --mount type=bind,src=$(pwd),dst=/work --user 1000:1000 --privileged  thierrytct/cm  bash
