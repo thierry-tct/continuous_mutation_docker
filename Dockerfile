@@ -37,4 +37,6 @@ CMD echo "HELLO CM"
 
 
 # Run Docker as following:
-#> sudo docker run -it --rm --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --mount type=bind,src=$(pwd),dst=/work --user 1000:1000 --privileged  thierrytct/cm  bash
+########> sudo docker run -it --rm --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --mount type=bind,src=$(pwd),dst=/work --user 1000:1000 --privileged  thierrytct/cm  bash
+
+#> sudo docker run -it --rm --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --mount type=bind,src=$(pwd),dst=/work --privileged  thierrytct/cm  bash
