@@ -23,7 +23,8 @@ ENV LLVM_LIB_SEARCH_PATH $LLVM_LIB_SEARCH_PATH:/usr/lib/x86_64-linux-gnu:/usr/li
 
 # create a non root user
 RUN adduser --home /home/cmtools --uid 8878 --disabled-login --disabled-password cmtools && adduser cmtools sudo \
-  && git clone https://github.com/muteria/example_c.git /home/cmtools/example_c
+  && git clone https://github.com/muteria/example_c.git /home/cmtools/example_c \
+  && chown -R cmtools /home/cmtools/example_c
 
 COPY run.sh /home/cmtools
 USER cmtools
