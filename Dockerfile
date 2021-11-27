@@ -30,10 +30,11 @@ COPY run.sh /home/cmtools
 RUN  chown -R cmtools:cmtools /home/cmtools/
 USER cmtools
 
+WORKDIR /home/cmtools/
+
 # upgrade muteria if new version and ulimit for shadow
 #ENTRYPOINT ulimit -s unlimited && sudo pip install muteria -U
 #ENTRYPOINT ulimit -s unlimited
-ENTRYPOINT cd /home/cmtools/
 
 CMD echo "HELLO CM"
 
