@@ -1,0 +1,4 @@
+In order to generate the 'configure' script, do the following:
+
+cd autoconf
+./AutoRegen.sh

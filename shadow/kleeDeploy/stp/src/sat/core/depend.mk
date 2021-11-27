@@ -1,0 +1,49 @@
+/home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/Main.o /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/Main.or /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/Main.od /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/Main.op: /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/Main.cc \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../utils/System.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../utils/../mtl/IntTypesMtl.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../utils/ParseUtils.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../utils/Options.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../utils/../mtl/Vec.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../utils/../mtl/../mtl/IntTypesMtl.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../utils/../mtl/../mtl/XAlloc.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../utils/../utils/ParseUtils.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/Dimacs.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../utils/ParseUtils.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/SolverTypes.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/IntTypesMtl.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/Alg.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/../mtl/Vec.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/Vec.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/Map.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/../mtl/IntTypesMtl.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/Alloc.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/../mtl/XAlloc.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/Solver.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../mtl/Vec.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../mtl/Heap.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../mtl/../mtl/Vec.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../mtl/Alg.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../utils/Options.h
+/home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/Solver.o /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/Solver.or /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/Solver.od /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/Solver.op: /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/Solver.cc \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../mtl/Sort.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../mtl/../mtl/Vec.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../mtl/../mtl/../mtl/IntTypesMtl.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../mtl/../mtl/../mtl/XAlloc.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/Solver.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../mtl/Vec.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../mtl/Heap.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../mtl/../mtl/Vec.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../mtl/Alg.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../utils/Options.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../utils/../mtl/IntTypesMtl.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../utils/../mtl/Vec.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../utils/../utils/ParseUtils.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/SolverTypes.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/IntTypesMtl.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/Alg.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/Vec.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/Map.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/../mtl/IntTypesMtl.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/../mtl/Vec.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/Alloc.h \
+ /home/shadowvm/shadow/kleeDeploy/stp/src/sat/core/../core/../core/../mtl/../mtl/XAlloc.h

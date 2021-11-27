@@ -1,0 +1,277 @@
+c_interface.o depend: c_interface.cpp c_interface.h fdstream.h \
+ ../printer/printers.h ../printer/../AST/AST.h \
+ ../printer/../AST/UsefulDefs.h ../printer/../AST/../main/Globals.h \
+ ../printer/../AST/ASTKind.h \
+ ../printer/../AST/../extlib-constbv/constantbv.h \
+ ../printer/../AST/RunTimes.h ../printer/../AST/../sat/utils/System.h \
+ ../printer/../AST/../sat/utils/../mtl/IntTypesMtl.h \
+ ../printer/../AST/../boost/noncopyable.hpp ../printer/../AST/ASTNode.h \
+ ../printer/../AST/NodeFactory/HashingNodeFactory.h \
+ ../printer/../AST/NodeFactory/NodeFactory.h \
+ ../printer/../AST/NodeFactory/../ASTKind.h \
+ ../printer/../AST/NodeFactory/../../boost/noncopyable.hpp \
+ ../printer/../AST/ASTInternal.h ../printer/../AST/ASTInterior.h \
+ ../printer/../AST/ASTInternalWithChildren.h \
+ ../printer/../AST/ASTSymbol.h ../printer/../AST/ASTBVConst.h \
+ ../printer/../AST/ASTKind.h ../printer/../STPManager/STP.h \
+ ../printer/../STPManager/../AST/AST.h \
+ ../printer/../STPManager/../AST/ArrayTransformer.h \
+ ../printer/../STPManager/../AST/AST.h \
+ ../printer/../STPManager/../AST/../STPManager/STPManager.h \
+ ../printer/../STPManager/../AST/../STPManager/UserDefinedFlags.h \
+ ../printer/../STPManager/../AST/../STPManager/../boost/noncopyable.hpp \
+ ../printer/../STPManager/../AST/../STPManager/../AST/AST.h \
+ ../printer/../STPManager/../AST/../STPManager/../AST/NodeFactory/HashingNodeFactory.h \
+ ../printer/../STPManager/../AST/../STPManager/../sat/SATSolver.h \
+ ../printer/../STPManager/../AST/../STPManager/../sat/mtl/Vec.h \
+ ../printer/../STPManager/../AST/../STPManager/../sat/mtl/../mtl/IntTypesMtl.h \
+ ../printer/../STPManager/../AST/../STPManager/../sat/mtl/../mtl/XAlloc.h \
+ ../printer/../STPManager/../AST/../STPManager/../sat/core/SolverTypes.h \
+ ../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/IntTypesMtl.h \
+ ../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/Alg.h \
+ ../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/../mtl/Vec.h \
+ ../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/Vec.h \
+ ../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/Map.h \
+ ../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/../mtl/IntTypesMtl.h \
+ ../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/Alloc.h \
+ ../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/../mtl/XAlloc.h \
+ ../printer/../STPManager/../AST/../AST/NodeFactory/SimplifyingNodeFactory.h \
+ ../printer/../STPManager/../AST/../AST/NodeFactory/NodeFactory.h \
+ ../printer/../STPManager/../AST/../AST/NodeFactory/../../STPManager/STPManager.h \
+ ../printer/../STPManager/../AST/../boost/noncopyable.hpp \
+ ../printer/../STPManager/../STPManager/STPManager.h \
+ ../printer/../STPManager/../simplifier/bvsolver.h \
+ ../printer/../STPManager/../simplifier/simplifier.h \
+ ../printer/../STPManager/../simplifier/../AST/AST.h \
+ ../printer/../STPManager/../simplifier/../STPManager/STPManager.h \
+ ../printer/../STPManager/../simplifier/../AST/NodeFactory/SimplifyingNodeFactory.h \
+ ../printer/../STPManager/../simplifier/SubstitutionMap.h \
+ ../printer/../STPManager/../simplifier/VariablesInExpression.h \
+ ../printer/../STPManager/../simplifier/Symbols.h \
+ ../printer/../STPManager/../simplifier/../boost/noncopyable.hpp \
+ ../printer/../STPManager/../simplifier/simplifier.h \
+ ../printer/../STPManager/../to-sat/ASTNode/ToSAT.h \
+ ../printer/../STPManager/../to-sat/ASTNode/ToCNF.h \
+ ../printer/../STPManager/../to-sat/ASTNode/../../AST/AST.h \
+ ../printer/../STPManager/../to-sat/ASTNode/../../STPManager/STPManager.h \
+ ../printer/../STPManager/../to-sat/ASTNode/ClauseList.h \
+ ../printer/../STPManager/../to-sat/ASTNode/../../boost/noncopyable.hpp \
+ ../printer/../STPManager/../to-sat/ASTNode/../ToSATBase.h \
+ ../printer/../STPManager/../to-sat/ASTNode/../../AST/AST.h \
+ ../printer/../STPManager/../to-sat/ASTNode/../../STPManager/STPManager.h \
+ ../printer/../STPManager/../to-sat/ASTNode/../../boost/noncopyable.hpp \
+ ../printer/../STPManager/../parser/LetMgr.h \
+ ../printer/../STPManager/../parser/../AST/AST.h \
+ ../printer/../STPManager/../absrefine_counterexample/AbsRefine_CounterExample.h \
+ ../printer/../STPManager/../absrefine_counterexample/../AST/AST.h \
+ ../printer/../STPManager/../absrefine_counterexample/../STPManager/STPManager.h \
+ ../printer/../STPManager/../absrefine_counterexample/../simplifier/simplifier.h \
+ ../printer/../STPManager/../absrefine_counterexample/../AST/ArrayTransformer.h \
+ ../printer/../STPManager/../absrefine_counterexample/../to-sat/ToSATBase.h \
+ ../printer/../STPManager/../absrefine_counterexample/../boost/noncopyable.hpp \
+ ../printer/../STPManager/../simplifier/PropagateEqualities.h \
+ ../printer/../STPManager/../simplifier/../simplifier/simplifier.h \
+ ../printer/../STPManager/../boost/noncopyable.hpp \
+ ../cpp_interface/cpp_interface.h ../cpp_interface/../AST/AST.h \
+ ../cpp_interface/../AST/NodeFactory/NodeFactory.h \
+ ../cpp_interface/../parser/LetMgr.h \
+ ../cpp_interface/../STPManager/STPManager.h \
+ ../cpp_interface/../STPManager/STP.h ../extlib-abc/cnf_short.h \
+ ../extlib-abc/vec.h ../extlib-abc/leaks.h ../extlib-abc/vecInt.h \
+ ../extlib-abc/vecFlt.h ../extlib-abc/vecStr.h ../extlib-abc/vecPtr.h \
+ ../extlib-abc/vecVec.h ../extlib-abc/aig.h
+
+c_interface.h:
+
+fdstream.h:
+
+../printer/printers.h:
+
+../printer/../AST/AST.h:
+
+../printer/../AST/UsefulDefs.h:
+
+../printer/../AST/../main/Globals.h:
+
+../printer/../AST/ASTKind.h:
+
+../printer/../AST/../extlib-constbv/constantbv.h:
+
+../printer/../AST/RunTimes.h:
+
+../printer/../AST/../sat/utils/System.h:
+
+../printer/../AST/../sat/utils/../mtl/IntTypesMtl.h:
+
+../printer/../AST/../boost/noncopyable.hpp:
+
+../printer/../AST/ASTNode.h:
+
+../printer/../AST/NodeFactory/HashingNodeFactory.h:
+
+../printer/../AST/NodeFactory/NodeFactory.h:
+
+../printer/../AST/NodeFactory/../ASTKind.h:
+
+../printer/../AST/NodeFactory/../../boost/noncopyable.hpp:
+
+../printer/../AST/ASTInternal.h:
+
+../printer/../AST/ASTInterior.h:
+
+../printer/../AST/ASTInternalWithChildren.h:
+
+../printer/../AST/ASTSymbol.h:
+
+../printer/../AST/ASTBVConst.h:
+
+../printer/../AST/ASTKind.h:
+
+../printer/../STPManager/STP.h:
+
+../printer/../STPManager/../AST/AST.h:
+
+../printer/../STPManager/../AST/ArrayTransformer.h:
+
+../printer/../STPManager/../AST/AST.h:
+
+../printer/../STPManager/../AST/../STPManager/STPManager.h:
+
+../printer/../STPManager/../AST/../STPManager/UserDefinedFlags.h:
+
+../printer/../STPManager/../AST/../STPManager/../boost/noncopyable.hpp:
+
+../printer/../STPManager/../AST/../STPManager/../AST/AST.h:
+
+../printer/../STPManager/../AST/../STPManager/../AST/NodeFactory/HashingNodeFactory.h:
+
+../printer/../STPManager/../AST/../STPManager/../sat/SATSolver.h:
+
+../printer/../STPManager/../AST/../STPManager/../sat/mtl/Vec.h:
+
+../printer/../STPManager/../AST/../STPManager/../sat/mtl/../mtl/IntTypesMtl.h:
+
+../printer/../STPManager/../AST/../STPManager/../sat/mtl/../mtl/XAlloc.h:
+
+../printer/../STPManager/../AST/../STPManager/../sat/core/SolverTypes.h:
+
+../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/IntTypesMtl.h:
+
+../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/Alg.h:
+
+../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/../mtl/Vec.h:
+
+../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/Vec.h:
+
+../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/Map.h:
+
+../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/../mtl/IntTypesMtl.h:
+
+../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/Alloc.h:
+
+../printer/../STPManager/../AST/../STPManager/../sat/core/../mtl/../mtl/XAlloc.h:
+
+../printer/../STPManager/../AST/../AST/NodeFactory/SimplifyingNodeFactory.h:
+
+../printer/../STPManager/../AST/../AST/NodeFactory/NodeFactory.h:
+
+../printer/../STPManager/../AST/../AST/NodeFactory/../../STPManager/STPManager.h:
+
+../printer/../STPManager/../AST/../boost/noncopyable.hpp:
+
+../printer/../STPManager/../STPManager/STPManager.h:
+
+../printer/../STPManager/../simplifier/bvsolver.h:
+
+../printer/../STPManager/../simplifier/simplifier.h:
+
+../printer/../STPManager/../simplifier/../AST/AST.h:
+
+../printer/../STPManager/../simplifier/../STPManager/STPManager.h:
+
+../printer/../STPManager/../simplifier/../AST/NodeFactory/SimplifyingNodeFactory.h:
+
+../printer/../STPManager/../simplifier/SubstitutionMap.h:
+
+../printer/../STPManager/../simplifier/VariablesInExpression.h:
+
+../printer/../STPManager/../simplifier/Symbols.h:
+
+../printer/../STPManager/../simplifier/../boost/noncopyable.hpp:
+
+../printer/../STPManager/../simplifier/simplifier.h:
+
+../printer/../STPManager/../to-sat/ASTNode/ToSAT.h:
+
+../printer/../STPManager/../to-sat/ASTNode/ToCNF.h:
+
+../printer/../STPManager/../to-sat/ASTNode/../../AST/AST.h:
+
+../printer/../STPManager/../to-sat/ASTNode/../../STPManager/STPManager.h:
+
+../printer/../STPManager/../to-sat/ASTNode/ClauseList.h:
+
+../printer/../STPManager/../to-sat/ASTNode/../../boost/noncopyable.hpp:
+
+../printer/../STPManager/../to-sat/ASTNode/../ToSATBase.h:
+
+../printer/../STPManager/../to-sat/ASTNode/../../AST/AST.h:
+
+../printer/../STPManager/../to-sat/ASTNode/../../STPManager/STPManager.h:
+
+../printer/../STPManager/../to-sat/ASTNode/../../boost/noncopyable.hpp:
+
+../printer/../STPManager/../parser/LetMgr.h:
+
+../printer/../STPManager/../parser/../AST/AST.h:
+
+../printer/../STPManager/../absrefine_counterexample/AbsRefine_CounterExample.h:
+
+../printer/../STPManager/../absrefine_counterexample/../AST/AST.h:
+
+../printer/../STPManager/../absrefine_counterexample/../STPManager/STPManager.h:
+
+../printer/../STPManager/../absrefine_counterexample/../simplifier/simplifier.h:
+
+../printer/../STPManager/../absrefine_counterexample/../AST/ArrayTransformer.h:
+
+../printer/../STPManager/../absrefine_counterexample/../to-sat/ToSATBase.h:
+
+../printer/../STPManager/../absrefine_counterexample/../boost/noncopyable.hpp:
+
+../printer/../STPManager/../simplifier/PropagateEqualities.h:
+
+../printer/../STPManager/../simplifier/../simplifier/simplifier.h:
+
+../printer/../STPManager/../boost/noncopyable.hpp:
+
+../cpp_interface/cpp_interface.h:
+
+../cpp_interface/../AST/AST.h:
+
+../cpp_interface/../AST/NodeFactory/NodeFactory.h:
+
+../cpp_interface/../parser/LetMgr.h:
+
+../cpp_interface/../STPManager/STPManager.h:
+
+../cpp_interface/../STPManager/STP.h:
+
+../extlib-abc/cnf_short.h:
+
+../extlib-abc/vec.h:
+
+../extlib-abc/leaks.h:
+
+../extlib-abc/vecInt.h:
+
+../extlib-abc/vecFlt.h:
+
+../extlib-abc/vecStr.h:
+
+../extlib-abc/vecPtr.h:
+
+../extlib-abc/vecVec.h:
+
+../extlib-abc/aig.h:
+c_interface.o depend : Makefile ../../scripts/Makefile.common ../../scripts/config.info
