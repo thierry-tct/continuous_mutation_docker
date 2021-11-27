@@ -10,7 +10,7 @@ ARG shadow_location=/home/shadowvm/shadow
 
 # Install Muteria and Copy Shadow
 RUN pip3 install --upgrade pip \
-  && pip install -U muteria && mkdir -p $shadow_location
+  && pip install -U git+https://github.com/muteria/muteria && mkdir -p $shadow_location
 
 COPY shadow $shadow_location/
 
