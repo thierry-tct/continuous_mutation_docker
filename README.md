@@ -23,5 +23,5 @@ docker push thierrytct/cm
 executing the muteria [example_c](https://github.com/muteria/example_c)
 
 ```
-docker run -it --rm thierrytct/cm "muteria --config ctrl/conf_shadow_semu.py --lang c run"
+docker run -it --rm thierrytct/cm "cd /home/cmtools/example_c && muteria --config ctrl/conf_shadow_semu.py --lang c run"
 ```
