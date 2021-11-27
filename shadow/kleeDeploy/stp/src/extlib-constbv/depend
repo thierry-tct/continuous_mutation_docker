@@ -1,4 +1,0 @@
-constantbv.o depend: constantbv.cpp constantbv.h
-
-constantbv.h:
-constantbv.o depend : Makefile ../../scripts/Makefile.common ../../scripts/config.info
